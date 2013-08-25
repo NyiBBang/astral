@@ -6,12 +6,12 @@ SRC = $(wildcard *.cpp)
 OBJ = $(SRC:%.cpp=.obj/%.o)
 HEADERS = $(wildcard *.h)
 
-all: .obj $(TARGET)
+all: $(TARGET)
 
 $(TARGET): out $(OBJ)
-	ar rcs out/$(TARGET) $(OBJ)
+	ar rcs out/$@ $(OBJ)
 
-$(OBJ): $(SRC) $(HEADERS)
+$(OBJ): .obj $(SRC) $(HEADERS)
 	g++ -c $(filter $(@:.obj/%.o=%.cpp), $(SRC)) -o $@ $(CXXFLAGS)
 
 .obj out:
