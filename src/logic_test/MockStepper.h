@@ -6,7 +6,7 @@
 
 MOCK_BASE_CLASS(MockStepper, IStepper)
 {
-    MOCK_METHOD(step, 0);
+    MOCK_METHOD(step, 1);
 };
 
 #endif

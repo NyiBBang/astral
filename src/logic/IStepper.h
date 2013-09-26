@@ -6,7 +6,7 @@ class IStepper
     public:
         IStepper() {}
         virtual ~IStepper() {}
-        virtual void step() = 0;
+        virtual void step(long microseconds) = 0;
 };
 
 #endif
