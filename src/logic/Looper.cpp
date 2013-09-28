@@ -1,22 +1,21 @@
 #include "Looper.h"
 #include "IStepper.h"
 #include "ILoopStopper.h"
+#include "IChronometer.h"
 #include <chrono>
 
-Looper::Looper(IStepper& stepper, const ILoopStopper& stopper)
+Looper::Looper(IStepper& stepper, const ILoopStopper& stopper, IChronometer& chrono)
     : stepper_(stepper)
     , stopper_(stopper)
+    , chrono_(chrono)
 {}
 
 void Looper::run()
 {
-    auto lastStep = std::chrono::high_resolution_clock::now();
     while (!stopper_.shouldStop())
     {
-        using namespace std::chrono;
-        const auto duration =
-            duration_cast<milliseconds>(steady_clock::now() - lastStep);
-        stepper_.step(duration.count());
+        stepper_.step(chrono_.count());
+        chrono_.restart();
     }
 }
 
