@@ -1,4 +1,4 @@
-.PHONY: all
+.PHONY: all clean
 
 CXXFLAGS = -Wall -Wextra -Werror -O2 -std=c++0x
 TARGET = liblogic.a

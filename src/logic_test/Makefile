@@ -1,4 +1,4 @@
-.PHONY: all
+.PHONY: all clean
 
 TARGET = logic_test
 SRC = $(wildcard *.cpp)
