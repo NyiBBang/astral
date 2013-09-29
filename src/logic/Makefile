@@ -1,6 +1,6 @@
 .PHONY: all clean
 
-CXXFLAGS = -Wall -Wextra -Werror -O2 -std=c++0x
+CXXFLAGS = -Wall -Wextra -Werror -g -std=c++0x
 TARGET = liblogic.a
 SRC = $(wildcard *.cpp)
 OBJ = $(SRC:%.cpp=.obj/%.o)
