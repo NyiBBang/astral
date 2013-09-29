@@ -7,7 +7,7 @@ struct Position
     int y;
 };
 
-class Mover
+class Mover final
 {
     public:
         Mover(Position& pos);
