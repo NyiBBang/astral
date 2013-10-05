@@ -10,7 +10,7 @@ class Mover final : public IStepper
     public:
         Mover(Position& pos, const Position& target, double speed);
         void teleport() const;
-        virtual void step(long elapsed);
+        virtual void step(long elapsed) override;
 
     private:
         Position& pos_;
