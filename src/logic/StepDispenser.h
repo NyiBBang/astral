@@ -9,7 +9,7 @@ class StepDispenser final : public IStepper
     public:
         void suscribe(IStepper& stepper);
         void unsuscribe(IStepper& stepper);
-        virtual void step(long microseconds) override;
+        virtual void step(quantity<si::time, double> elapsed) override;
 
     private:
         std::vector<IStepper*> steppers_;

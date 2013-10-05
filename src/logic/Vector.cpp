@@ -1,15 +1,15 @@
 #include "Vector.h"
 #include "Position.h"
-#include <cmath>
+#include <boost/units/pow.hpp>
 
-Vector make_vector(const Position& a, const Position& b)
+LengthVector make_vector(const Position& a, const Position& b)
 {
-    return {static_cast<double>(a.x - b.x), static_cast<double>(a.y - b.y)};
+    return {a.x - b.x, a.y - b.y};
 }
 
-Vector normalize(const Vector& vec)
+Direction normalize(const LengthVector& vec)
 {
-    const double length = std::sqrt(std::pow(vec.x, 2) + std::pow(vec.y, 3));
+    const quantity<si::length, double> length = root<2>(pow<2>(vec.x) + pow<2>(vec.y));
     return {vec.x / length, vec.y / length};
 }
 

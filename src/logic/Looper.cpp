@@ -14,7 +14,7 @@ void Looper::run()
 {
     while (!stopper_.shouldStop())
     {
-        const long elapsed = chrono_.count();
+        const auto elapsed = chrono_.count();
         chrono_.restart();
         stepper_.step(elapsed);
     }

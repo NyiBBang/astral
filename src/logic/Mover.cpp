@@ -2,7 +2,8 @@
 #include "Position.h"
 #include "Vector.h"
 
-Mover::Mover(Position& pos, const Position& target, double speed)
+Mover::Mover(Position& pos, const Position& target,
+             quantity<si::velocity, double> speed)
     : pos_(pos)
     , target_(target)
     , speed_(speed)
@@ -14,10 +15,10 @@ void Mover::teleport() const
     pos_.y = target_.y;
 }
 
-void Mover::step(long elapsed)
+void Mover::step(quantity<si::time, double> elapsed)
 {
-    const Vector normDirec = normalize(make_vector(pos_, target_));
-    pos_.x += normDirec.x * speed_ * elapsed / 1000;
-    pos_.y += normDirec.y * speed_ * elapsed / 1000;
+    const Direction direct = normalize(make_vector(pos_, target_));
+    pos_.x += direct.x * (speed_ * elapsed);
+    pos_.y += direct.y * (speed_ * elapsed);
 }
 
