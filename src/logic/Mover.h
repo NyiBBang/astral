@@ -1,20 +1,21 @@
 #ifndef LOGIC_MOVER_H
 #define LOGIC_MOVER_H
 
-struct Position
-{
-    int x;
-    int y;
-};
+#include "IStepper.h"
 
-class Mover final
+class Position;
+
+class Mover final : public IStepper
 {
     public:
-        Mover(Position& pos);
-        void teleport(int x, int y);
+        Mover(Position& pos, const Position& target, double speed);
+        void teleport() const;
+        virtual void step(long elapsed);
 
     private:
         Position& pos_;
+        const Position& target_;
+        const double speed_;
 };
 
 #endif
