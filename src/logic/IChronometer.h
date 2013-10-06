@@ -1,5 +1,5 @@
-#ifndef LOGIC_CHRONOMETER_H
-#define LOGIC_CHRONOMETER_H
+#ifndef LOGIC_I_CHRONOMETER_H
+#define LOGIC_I_CHRONOMETER_H
 
 #include "Units.h"
 
