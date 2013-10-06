@@ -2,11 +2,7 @@
 #define LOGIC_MOVER_H
 
 #include "IStepper.h"
-#include <boost/units/quantity.hpp>
-#include <boost/units/systems/si.hpp>
-
-using boost::units::quantity;
-using boost::units::si::velocity;
+#include "Units.h"
 
 class Position;
 
@@ -14,7 +10,7 @@ class Mover final : public IStepper
 {
     public:
         Mover(Position& pos, const Position& target,
-              quantity<si::velocity, double> speed);
+              quantity<velocity, double> speed);
         void teleport() const;
         virtual void step(quantity<si::time, double> elapsed) override;
 
