@@ -10,7 +10,6 @@ class Looper final
     public:
         Looper(IStepper& stepper, const ILoopStopper& stopper, IChronometer& chrono);
         void run();
-        void stop();
 
     private:
         IStepper& stepper_;
