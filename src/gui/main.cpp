@@ -1,24 +1,13 @@
-#include <SFML/Graphics.hpp>
+#include "WindowDisplay.h"
+#include "logic/Looper.h"
+#include "logic/Chronometer.h"
 
 int main()
 {
-  sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
-  sf::CircleShape shape(100.f);
-  shape.setFillColor(sf::Color::Green);
+    WindowDisplay display;
+    Chronometer chrono;
+    Looper looper(display, display, chrono);
+    looper.run();
 
-  while (window.isOpen())
-  {
-    sf::Event event;
-    while (window.pollEvent(event))
-    {
-      if (event.type == sf::Event::Closed)
-        window.close();
-    }
-
-    window.clear();
-    window.draw(shape);
-    window.display();
-  }
-
-  return 0;
+    return 0;
 }
