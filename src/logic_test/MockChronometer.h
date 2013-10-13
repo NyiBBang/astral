@@ -12,4 +12,3 @@ MOCK_BASE_CLASS(MockChronometer, IChronometer)
 
 #endif
 
-
