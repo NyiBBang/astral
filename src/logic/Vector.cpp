@@ -3,7 +3,7 @@
 
 LengthVector make_vector(const Position& a, const Position& b)
 {
-    return {a.x - b.x, a.y - b.y};
+    return {b.x - a.x, b.y - a.y};
 }
 
 Direction normalize(const LengthVector& vec)
