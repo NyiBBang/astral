@@ -4,7 +4,7 @@ OBJ = $(SRC:%.cpp=.obj/%.o)
 HEADERS = $(wildcard *.h)
 CXXFLAGS = -Wall -Wextra -Werror -g -std=c++0x
 INCLUDE_PATH = -I..
-LIBS = -lsfml-graphics -lsfml-window -lsfml-system -lGLEW -llogic
+LIBS = -lsfml-graphics -lsfml-window -lsfml-system -lGL -lGLEW -llogic
 LIB_PATH = -L../logic/out
 LD_PATH = -Wl,-rpath /usr/local/lib -Wl,-rpath /usr/lib -Wl,-rpath /usr/lib64
 
