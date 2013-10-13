@@ -10,20 +10,22 @@ namespace sf
     class RenderWindow;
 }
 
-class StepDispenser;
+class IStepperRegistrar;
 
-class WindowDisplay final : public IStepper
+class WindowDisplay final : private IStepper
                           , public ILoopStopper
 {
     public:
-        WindowDisplay(StepDispenser& dispenser);
+        WindowDisplay(IStepperRegistrar& registrar);
         ~WindowDisplay();
 
-        virtual void step(quantity<si::time, double> elapsed) override;
         virtual bool shouldStop() const override;
 
     private:
-        StepDispenser& dispenser_;
+        virtual void step(quantity<si::time, double> elapsed) override;
+
+    private:
+        IStepperRegistrar& registrar_;
         std::unique_ptr<sf::RenderWindow> window_;
 };
 

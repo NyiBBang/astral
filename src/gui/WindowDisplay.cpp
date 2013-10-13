@@ -1,17 +1,29 @@
 #include "WindowDisplay.h"
-#include "logic/StepDispenser.h"
+#include "logic/IStepperRegistrar.h"
 #include <SFML/Graphics.hpp>
+#include <SFML/OpenGL.hpp>
 
-WindowDisplay::WindowDisplay(StepDispenser& dispenser)
-    : dispenser_(dispenser)
-    , window_(new sf::RenderWindow(sf::VideoMode(800, 600), "RTS Game"))
+#define WIDTH 800
+#define HEIGHT 600
+
+WindowDisplay::WindowDisplay(IStepperRegistrar& registrar)
+    : registrar_(registrar)
+    , window_(new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "RTS Game"))
 {
-    dispenser_.suscribe(*this);
+    registrar_.suscribe(*this);
+
+    glClearColor(0.0, 0.0, 0.0, 0.0);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glViewport(0, 0, WIDTH, HEIGHT);
+    glOrtho(0, WIDTH, 0, HEIGHT, 1, -1);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
 }
 
 WindowDisplay::~WindowDisplay()
 {
-    dispenser_.unsuscribe(*this);
+    registrar_.unsuscribe(*this);
 }
 
 void WindowDisplay::step(quantity<si::time, double>)
@@ -21,8 +33,14 @@ void WindowDisplay::step(quantity<si::time, double>)
     {
         if (event.type == sf::Event::Closed)
             window_->close();
+        else if (event.type == sf::Event::Resized)
+        {
+            glMatrixMode(GL_PROJECTION);
+            glViewport(0, 0, event.size.width, event.size.height);
+            glMatrixMode(GL_MODELVIEW);
+        }
     }
-    window_->clear();
+
     window_->display();
 }
 
