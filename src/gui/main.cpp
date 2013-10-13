@@ -1,12 +1,14 @@
 #include "WindowDisplay.h"
+#include "logic/StepDispenser.h"
 #include "logic/Looper.h"
 #include "logic/Chronometer.h"
 
 int main()
 {
-    WindowDisplay display;
+    StepDispenser dispenser;
+    WindowDisplay display(dispenser);
     Chronometer chrono;
-    Looper looper(display, display, chrono);
+    Looper looper(dispenser, display, chrono);
     looper.run();
 
     return 0;

@@ -1,12 +1,18 @@
 #include "WindowDisplay.h"
+#include "logic/StepDispenser.h"
 #include <SFML/Graphics.hpp>
 
-WindowDisplay::WindowDisplay()
-    : window_(new sf::RenderWindow(sf::VideoMode(800, 600), "RTS Game"))
-{}
+WindowDisplay::WindowDisplay(StepDispenser& dispenser)
+    : dispenser_(dispenser)
+    , window_(new sf::RenderWindow(sf::VideoMode(800, 600), "RTS Game"))
+{
+    dispenser_.suscribe(*this);
+}
 
 WindowDisplay::~WindowDisplay()
-{}
+{
+    dispenser_.unsuscribe(*this);
+}
 
 void WindowDisplay::step(quantity<si::time, double>)
 {
@@ -24,3 +30,4 @@ bool WindowDisplay::shouldStop() const
 {
     return !window_->isOpen();
 }
+
