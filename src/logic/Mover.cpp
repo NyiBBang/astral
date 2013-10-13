@@ -1,13 +1,22 @@
 #include "Mover.h"
 #include "Position.h"
 #include "Vector.h"
+#include "IStepperRegistrar.h"
 
 Mover::Mover(Position& pos, const Position& target,
-             quantity<si::velocity, double> speed)
+             quantity<si::velocity, double> speed, IStepperRegistrar& registrar)
     : pos_(pos)
     , target_(target)
     , speed_(speed)
-{}
+    , registrar_(registrar)
+{
+    registrar_.suscribe(*this);
+}
+
+Mover::~Mover()
+{
+    registrar_.unsuscribe(*this);
+}
 
 void Mover::teleport() const
 {
