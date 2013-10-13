@@ -14,8 +14,8 @@ int main()
     Drawer drawer(dispenser);
     Position pos{100 * meters, 100 * meters};
     CrossDrawable cross(pos, drawer);
-    Position target{200 * meters, 200 * meters};
-    Mover mover(pos, target, 50 * meters_per_second, dispenser);
+    Position target{600 * meters, 400 * meters};
+    Mover mover(pos, target, 100 * meters_per_second, dispenser);
     Chronometer chrono;
     Looper looper(dispenser, display, chrono);
     looper.run();
