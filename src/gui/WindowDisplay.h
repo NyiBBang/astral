@@ -11,12 +11,13 @@ namespace sf
 }
 
 class IStepperRegistrar;
+class Position;
 
 class WindowDisplay final : private IStepper
                           , public ILoopStopper
 {
     public:
-        WindowDisplay(IStepperRegistrar& registrar);
+        WindowDisplay(IStepperRegistrar& registrar, Position& position);
         ~WindowDisplay();
 
         virtual bool shouldStop() const override;
@@ -26,6 +27,7 @@ class WindowDisplay final : private IStepper
 
     private:
         IStepperRegistrar& registrar_;
+        Position& position_;
         std::unique_ptr<sf::RenderWindow> window_;
 };
 

@@ -1,4 +1,5 @@
 #include "WindowDisplay.h"
+#include "logic/Position.h"
 #include "logic/IStepperRegistrar.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
@@ -6,8 +7,9 @@
 #define WIDTH 800
 #define HEIGHT 600
 
-WindowDisplay::WindowDisplay(IStepperRegistrar& registrar)
+WindowDisplay::WindowDisplay(IStepperRegistrar& registrar, Position& position)
     : registrar_(registrar)
+    , position_(position)
     , window_(new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "RTS Game"))
 {
     registrar_.suscribe(*this);
@@ -38,6 +40,13 @@ void WindowDisplay::step(quantity<si::time, double>)
             glMatrixMode(GL_PROJECTION);
             glViewport(0, 0, event.size.width, event.size.height);
             glMatrixMode(GL_MODELVIEW);
+        }
+        else if (event.type == sf::Event::MouseButtonReleased)
+        {
+            // This needs to use 3D projection coordinates conversion
+            const int worldY = window_->getSize().y - event.mouseButton.y;
+            position_.x = event.mouseButton.x * meters;
+            position_.y = worldY * meters;
         }
     }
 

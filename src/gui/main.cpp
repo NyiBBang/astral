@@ -10,11 +10,11 @@
 int main()
 {
     StepDispenser dispenser;
-    WindowDisplay display(dispenser);
+    Position target{0, 0};
+    WindowDisplay display(dispenser, target);
     Drawer drawer(dispenser);
-    Position pos{100 * meters, 100 * meters};
+    Position pos{0, 0};
     CrossDrawable cross(pos, drawer);
-    Position target{600 * meters, 400 * meters};
     Mover mover(pos, target, 100 * meters_per_second, dispenser);
     Chronometer chrono;
     Looper looper(dispenser, display, chrono);
