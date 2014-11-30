@@ -1,7 +1,7 @@
 #include "CrossDrawable.h"
 #include "Drawer.h"
 #include "logic/Position.h"
-#include <SFML/OpenGL.hpp>
+#include <SFML/Window/OpenGL.hpp>
 
 CrossDrawable::CrossDrawable(const Position& pos, Drawer& drawer)
     : pos_(pos)
