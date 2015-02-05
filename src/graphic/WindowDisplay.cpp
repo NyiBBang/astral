@@ -18,7 +18,7 @@ WindowDisplay::WindowDisplay(IStepperRegistrar& registrar, Position& position)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glViewport(0, 0, WIDTH, HEIGHT);
-    glOrtho(0, WIDTH, 0, HEIGHT, 1, -1);
+    glOrtho(0, WIDTH, HEIGHT, 0, 1, -1);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
@@ -44,9 +44,8 @@ void WindowDisplay::step(quantity<si::time, double>)
         else if (event.Type == sf::Event::MouseButtonReleased)
         {
             // This needs to use 3D projection coordinates conversion
-            const int worldY = window_->GetView().GetRect().Top - event.MouseButton.Y;
             position_.x = event.MouseButton.X * meters;
-            position_.y = worldY * meters;
+            position_.y = event.MouseButton.Y * meters;
         }
     }
 
