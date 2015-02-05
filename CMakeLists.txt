@@ -6,6 +6,11 @@ set(${PROJECT_NAME}_MAJOR_VERSION 0)
 set(${PROJECT_NAME}_MINOR_VERSION 0)
 set(${PROJECT_NAME}_PATCH_VERSION 0)
 
+# By default, we compile in debug
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type for the project" FORCE)
+endif()
+
 # Using C++11
 include(CheckCXXCompilerFlag)
 check_cxx_compiler_flag(-std=c++11 COMPILER_SUPPORTS_CXX11)
