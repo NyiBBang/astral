@@ -1,0 +1,16 @@
+= General information
+
+* SFML naming convention has changed: everything is now camelCase instead CamelCase
+
+= OpenGL
+
+ * the include SFML/Window/OpenGL.hpp -> SFML/OpenGL.hpp
+
+= Window package
+
+* GetEvent() -> pollEvent()
+
+= Links to get help
+http://en.sfml-dev.org/forums/index.php?topic=5343.0
+http://en.sfml-dev.org/forums/index.php?topic=7273.0
+
