@@ -1,7 +1,7 @@
 #include "Drawer.h"
 #include "IDrawable.h"
 #include "logic/IStepperRegistrar.h"
-#include <SFML/Window/OpenGL.hpp>
+#include <SFML/OpenGL.hpp>
 
 Drawer::Drawer(IStepperRegistrar& registrar)
     : registrar_(registrar)

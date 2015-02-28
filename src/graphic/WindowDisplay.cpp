@@ -2,7 +2,7 @@
 #include "logic/Position.h"
 #include "logic/IStepperRegistrar.h"
 #include <SFML/Graphics.hpp>
-#include <SFML/Window/OpenGL.hpp>
+#include <SFML/OpenGL.hpp>
 
 #define WIDTH 800
 #define HEIGHT 600
@@ -31,29 +31,29 @@ WindowDisplay::~WindowDisplay()
 void WindowDisplay::step(quantity<si::time, double>)
 {
     sf::Event event;
-    while (window_->GetEvent(event))
+    while (window_->pollEvent(event))
     {
-        if (event.Type == sf::Event::Closed)
-            window_->Close();
-        else if (event.Type == sf::Event::Resized)
+        if (event.type == sf::Event::Closed)
+            window_->close();
+        else if (event.type == sf::Event::Resized)
         {
             glMatrixMode(GL_PROJECTION);
-            glViewport(0, 0, event.Size.Width, event.Size.Height);
+            glViewport(0, 0, event.size.width, event.size.height);
             glMatrixMode(GL_MODELVIEW);
         }
-        else if (event.Type == sf::Event::MouseButtonReleased)
+        else if (event.type == sf::Event::MouseButtonReleased)
         {
             // This needs to use 3D projection coordinates conversion
-            position_.x = event.MouseButton.X * meters;
-            position_.y = event.MouseButton.Y * meters;
+            position_.x = event.mouseButton.x * meters;
+            position_.y = event.mouseButton.y * meters;
         }
     }
 
-    window_->Display();
+    window_->display();
 }
 
 bool WindowDisplay::shouldStop() const
 {
-    return !window_->IsOpened();
+    return !window_->isOpen();
 }
 
