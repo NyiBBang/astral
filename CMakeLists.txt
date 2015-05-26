@@ -29,5 +29,6 @@ set(ASTRAL_INSTALL_PATH ${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME})
 # Testing
 enable_testing()
 
+add_subdirectory(third-party)
 add_subdirectory(src)
 
