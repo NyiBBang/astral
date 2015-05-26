@@ -4,7 +4,7 @@
 #include "IStepperRegistrar.h"
 
 Mover::Mover(Position& pos, const Position& target,
-             quantity<si::velocity, double> speed, IStepperRegistrar& registrar)
+             SpeedQuantity speed, IStepperRegistrar& registrar)
     : pos_(pos)
     , target_(target)
     , speed_(speed)
@@ -24,7 +24,7 @@ void Mover::teleport() const
     pos_.y = target_.y;
 }
 
-void Mover::step(quantity<si::time, double> elapsed)
+void Mover::step(TimeQuantity elapsed)
 {
     const Direction direct = normalize(make_vector(pos_, target_));
     pos_.x += direct.x * (speed_ * elapsed);

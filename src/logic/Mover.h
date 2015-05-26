@@ -11,16 +11,16 @@ class Mover final : private IStepper
 {
     public:
         Mover(Position& pos, const Position& target,
-              quantity<velocity, double> speed, IStepperRegistrar& registrar);
+              SpeedQuantity speed, IStepperRegistrar& registrar);
         ~Mover();
 
         void teleport() const;
-        virtual void step(quantity<si::time, double> elapsed) override;
+        void step(TimeQuantity elapsed) override;
 
     private:
         Position& pos_;
         const Position& target_;
-        const quantity<si::velocity, double> speed_;
+        const SpeedQuantity speed_;
         IStepperRegistrar& registrar_;
 };
 

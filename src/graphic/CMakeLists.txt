@@ -1,11 +1,17 @@
-aux_source_directory(. SRC_LIST)
-add_executable(graphic ${SRC_LIST})
+set(graphic_SOURCES
+    IDrawable.h
+    CrossDrawable.cpp CrossDrawable.h
+    Drawer.cpp Drawer.h
+    WindowDisplay.cpp WindowDisplay.h
+    main.cpp
+)
+add_executable(graphic ${graphic_SOURCES})
 include_directories(..)
 target_link_libraries(graphic logic)
 
 # SFML
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_LIST_DIR}/cmake_modules)
-find_package(SFML 1.6 REQUIRED COMPONENTS graphics window system)
+find_package(SFML 2.1 REQUIRED COMPONENTS graphics window system)
 include_directories(${SFML_INCLUDE_DIR})
 target_link_libraries(graphic ${SFML_LIBRARIES})
 

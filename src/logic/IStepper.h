@@ -8,7 +8,7 @@ class IStepper
     public:
         IStepper() {}
         virtual ~IStepper() {}
-        virtual void step(quantity<si::time, double> elapsed) = 0;
+        virtual void step(TimeQuantity elapsed) = 0;
 };
 
 #endif

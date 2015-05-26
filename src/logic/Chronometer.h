@@ -8,8 +8,8 @@ class Chronometer final : public IChronometer
 {
     public:
         Chronometer();
-        virtual void restart();
-        virtual quantity<si::time, double> count() const;
+        void restart() override;
+        TimeQuantity count() const override;
 
     private:
         std::chrono::system_clock::time_point last_;

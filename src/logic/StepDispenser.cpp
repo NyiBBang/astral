@@ -12,7 +12,7 @@ void StepDispenser::unsuscribe(IStepper& stepper)
                     steppers_.end());
 }
 
-void StepDispenser::step(quantity<si::time, double> elapsed)
+void StepDispenser::step(TimeQuantity elapsed)
 {
     for (IStepper* const stepper : steppers_)
         stepper->step(elapsed);

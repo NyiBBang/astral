@@ -26,6 +26,8 @@ endif()
 # Install path is inside a directory named as the project
 set(ASTRAL_INSTALL_PATH ${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME})
 
+include_directories(${PROJECT_BINARY_DIR} ${PROJECT_SOURCE_DIR}/src)
+
 # Testing
 enable_testing()
 

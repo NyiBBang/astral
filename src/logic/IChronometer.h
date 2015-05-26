@@ -9,7 +9,7 @@ class IChronometer
         IChronometer() {}
         virtual ~IChronometer() {}
         virtual void restart() = 0;
-        virtual quantity<si::time, double> count() const = 0;
+        virtual TimeQuantity count() const = 0;
 };
 
 #endif

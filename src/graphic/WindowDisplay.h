@@ -20,10 +20,10 @@ class WindowDisplay final : private IStepper
         WindowDisplay(IStepperRegistrar& registrar, Position& position);
         ~WindowDisplay();
 
-        virtual bool shouldStop() const override;
+        bool shouldStop() const override;
 
     private:
-        virtual void step(quantity<si::time, double> elapsed) override;
+        void step(TimeQuantity elapsed) override;
 
     private:
         IStepperRegistrar& registrar_;

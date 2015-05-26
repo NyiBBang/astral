@@ -16,5 +16,8 @@ using boost::units::si::seconds;
 using boost::units::si::meters_per_second;
 using namespace boost::units;
 
+using TimeQuantity = quantity<si::time, double>;
+using SpeedQuantity = quantity<si::velocity, double>;
+
 #endif
 
