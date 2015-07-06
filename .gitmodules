@@ -1,6 +1,6 @@
 [submodule "third-party/gmock"]
 	path = third-party/gmock
-	url = http://git.chromium.org/external/googlemock.git
+    url = https://chromium.googlesource.com/external/gmock/
 [submodule "third-party/gtest"]
 	path = third-party/gtest
-	url = http://git.chromium.org/external/googletest.git
+    url = https://chromium.googlesource.com/external/gtest/
