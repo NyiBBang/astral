@@ -8,7 +8,8 @@ set(logic_SOURCES
     StepDispenser.cpp StepDispenser.h
     Vector.cpp Vector.h
 )
-add_library(logic ${logic_SOURCES})
+add_library(logic STATIC ${logic_SOURCES})
+target_include_directories(logic PUBLIC ${Boost_INCLUDE_DIR})
 
 add_subdirectory(test)
 
