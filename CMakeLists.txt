@@ -15,6 +15,15 @@ option(BUILD_SHARED_LIBS "" FALSE)
 # Modules and packages
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/Modules")
 
+set(Boost_USE_STATIC_LIBS ON)
+set(Boost_USE_MULTITHREADED ON)
+set(Boost_USE_STATIC_RUNTIME ON)
+find_package(
+	Boost 1.67
+	REQUIRED
+)
+
+
 # Install path is inside a directory named after the project
 set(ASTRAL_INSTALL_PATH ${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME})
 
