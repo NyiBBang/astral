@@ -11,7 +11,7 @@ namespace sf
 }
 
 class IStepperRegistrar;
-class Position;
+struct Position;
 
 class WindowDisplay final : private IStepper
                           , public ILoopStopper

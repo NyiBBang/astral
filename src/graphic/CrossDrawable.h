@@ -3,7 +3,7 @@
 
 #include "IDrawable.h"
 
-class Position;
+struct Position;
 class Drawer;
 
 class CrossDrawable final : public IDrawable

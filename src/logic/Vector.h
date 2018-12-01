@@ -3,7 +3,7 @@
 
 #include "Units.h"
 
-class Position;
+struct Position;
 
 struct Direction
 {
@@ -21,4 +21,3 @@ LengthVector make_vector(const Position& a, const Position& b);
 Direction normalize(const LengthVector& vec);
 
 #endif
-

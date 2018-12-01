@@ -4,7 +4,7 @@
 #include "IStepper.h"
 #include "Units.h"
 
-class Position;
+struct Position;
 class IStepperRegistrar;
 
 class Mover final : private IStepper
