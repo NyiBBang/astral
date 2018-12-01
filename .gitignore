@@ -16,4 +16,4 @@ out
 .*.swp
 
 # All build folders
-build-debug
+build*
