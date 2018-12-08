@@ -10,6 +10,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+option(ASTRAL_BUILD_TESTS "Build astral tests" TRUE)
 option(BUILD_SHARED_LIBS "" FALSE)
 
 # Modules and packages
@@ -29,7 +30,9 @@ set(ASTRAL_INSTALL_PATH ${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME})
 
 include_directories(${PROJECT_BINARY_DIR} ${PROJECT_SOURCE_DIR}/src)
 
-enable_testing()
 add_subdirectory(third-party)
 add_subdirectory(src)
 
+if(ASTRAL_BUILD_TESTS)
+	enable_testing()
+endif()
