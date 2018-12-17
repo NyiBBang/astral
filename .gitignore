@@ -14,6 +14,5 @@
 
 out
 .*.swp
-
-# All build folders
+.vscode
 build*
