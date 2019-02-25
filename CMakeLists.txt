@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.11)
+cmake_minimum_required(VERSION 3.14)
 
 # Project declaration
 project(astral)
@@ -24,9 +24,13 @@ find_package(
 	REQUIRED
 )
 
-
-# Install path is inside a directory named after the project
-set(ASTRAL_INSTALL_PATH ${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME})
+find_package(
+	SFML 2.5.1
+	REQUIRED
+	COMPONENTS
+		window
+		graphics
+)
 
 include_directories(${PROJECT_BINARY_DIR} ${PROJECT_SOURCE_DIR}/src)
 

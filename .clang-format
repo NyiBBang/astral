@@ -4,3 +4,5 @@ KeepEmptyLinesAtTheStartOfBlocks: false
 BreakBeforeBraces: Allman
 ColumnLimit: 80
 Language: Cpp
+DerivePointerAlignment: false
+PointerAlignment: Left
