@@ -5,7 +5,6 @@ set(
 
 add_library(
   astral_engine
-  STATIC
   ${astral_engine_SOURCES}
 )
 
@@ -18,5 +17,6 @@ target_include_directories(
 
 target_link_libraries(
   astral_engine
+  PUBLIC
     astral_toolkit
 )
