@@ -15,8 +15,8 @@ add_executable(
 set_target_properties(
   astral_gui
   PROPERTIES
-    RUNTIME_OUTPUT_NAME_RELEASE astral
-    RUNTIME_OUTPUT_NAME_DEBUG astral_d
+    RUNTIME_OUTPUT_NAME astral
+    DEBUG_POSTFIX _d
 )
 
 target_link_libraries(
@@ -26,7 +26,7 @@ target_link_libraries(
     sfml-graphics
 )
 
-if(WIN32)
+if(WIN32 AND NOT SFML_STATIC_LIBRARIES)
   add_custom_command(
     TARGET astral_gui POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
