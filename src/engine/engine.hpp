@@ -20,13 +20,13 @@
 namespace astral::eng
 {
 
-template <typename Function, typename Predicate>
-void run(Function&& update, Predicate&& stop)
-{
-  while (!stop())
-  {
-    update();
-  }
-}
+// template <typename Function, typename Predicate>
+// void run(Function&& update, Predicate&& stop)
+// {
+//   while (!stop())
+//   {
+//     update();
+//   }
+// }
 
 } // namespace astral::eng

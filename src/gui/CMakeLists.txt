@@ -22,7 +22,6 @@ set_target_properties(
 target_link_libraries(
   astral_gui
   PUBLIC
-    astral_engine
     sfml-graphics
 )
 

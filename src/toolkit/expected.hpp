@@ -17,14 +17,14 @@
 
 #pragma once
 
-#include <type_traits>
-#include <variant>
+// #include <type_traits>
+// #include <variant>
 
 namespace astral::tk
 {
-template <typename T, typename Errc>
-using Expected =
-    std::variant<std::conditional_t<std::is_void_v<T>, std::monostate, T>,
-                 Errc>;
+// template <typename T, typename Errc>
+// using Expected =
+//     std::variant<std::conditional_t<std::is_void_v<T>, std::monostate, T>,
+//                  Errc>;
 
 } // namespace astral::tk
