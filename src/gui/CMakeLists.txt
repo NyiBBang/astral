@@ -23,6 +23,7 @@ target_link_libraries(
   astral_gui
   PUBLIC
     sfml-graphics
+    sfml-window
 )
 
 if(WIN32 AND NOT SFML_STATIC_LIBRARIES)
