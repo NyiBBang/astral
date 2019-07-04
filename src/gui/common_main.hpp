@@ -17,8 +17,7 @@
 
 #pragma once
 
-namespace astral::gui
-{
+namespace astral::gui {
 void start();
 
 }

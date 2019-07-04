@@ -20,17 +20,17 @@
 
 namespace astral::eng::test
 {
-TEST(Engine, Run)
-{
-  testing::MockFunction<bool()> stop;
-  testing::MockFunction<void()> update;
+// TEST(Engine, Run)
+// {
+//   testing::MockFunction<bool()> stop;
+//   testing::MockFunction<void()> update;
 
-  EXPECT_CALL(update, Call()).Times(1);
-  EXPECT_CALL(stop, Call())
-      .Times(2)
-      .WillOnce(testing::Return(false))
-      .WillOnce(testing::Return(true));
-  astral::eng::run(update.AsStdFunction(), stop.AsStdFunction());
-}
+//   EXPECT_CALL(update, Call()).Times(1);
+//   EXPECT_CALL(stop, Call())
+//       .Times(2)
+//       .WillOnce(testing::Return(false))
+//       .WillOnce(testing::Return(true));
+//   astral::eng::run(update.AsStdFunction(), stop.AsStdFunction());
+// }
 
 } // namespace astral::eng::test
