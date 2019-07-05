@@ -18,6 +18,7 @@
 #include "event_handler.hpp"
 
 #include <SFML/Graphics/CircleShape.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 
@@ -44,7 +45,7 @@ float zoom_target_view(RenderTarget& target, float delta) {
 
 class Zoom_target_view_on_wheel_scroll : public Event_handler {
 public:
-  Zoom_target_view_on_wheel_scroll(RenderTarget& target) : _target(&target) {
+  constexpr Zoom_target_view_on_wheel_scroll(RenderTarget& target) : _target(&target) {
   }
 
 private:
@@ -65,7 +66,7 @@ private:
 
 class Close_window : public Event_handler {
 public:
-  Close_window(Window& window) : _window(&window) {
+  constexpr Close_window(Window& window) : _window(&window) {
   }
 
 private:
@@ -78,6 +79,53 @@ private:
   }
 
   Window* _window = nullptr;
+};
+
+class Click_on_circle : public Event_handler {
+public:
+  constexpr Click_on_circle(RenderTarget& target, CircleShape& circle)
+      : _target(&target), _circle(&circle) {
+  }
+
+private:
+  void execute(const Event& ev) noexcept override {
+    if (!_target || !_circle || ev.type != Event::MouseButtonPressed)
+      return;
+
+    const auto& button = ev.mouseButton;
+    const auto local_mouse_pos = Vector2i(button.x, button.y);
+    const auto world_coords = _target->mapPixelToCoords(local_mouse_pos);
+    const auto circle_bounds = _circle->getGlobalBounds();
+    if (circle_bounds.contains(world_coords.x, world_coords.y)) {
+      _circle->setOutlineColor(Color::Red);
+    } else {
+      _circle->setOutlineColor(Color::Blue);
+    }
+  }
+
+  RenderTarget* _target = nullptr;
+  CircleShape* _circle = nullptr;
+};
+
+class Resize_view : public Event_handler {
+public:
+  constexpr Resize_view(RenderTarget& target) : _target(&target) {
+  }
+
+private:
+  void execute(const Event& ev) noexcept override {
+    if (!_target || ev.type != Event::Resized)
+      return;
+
+    const auto& size = ev.size;
+    auto view = _target->getView();
+    auto visible_area = FloatRect(0.f, 0.f, static_cast<float>(size.width),
+                                  static_cast<float>(size.height));
+    view.setSize(visible_area.width, visible_area.height);
+    _target->setView(view);
+  }
+
+  RenderTarget* _target;
 };
 
 } // namespace
@@ -102,11 +150,14 @@ void start() {
 
   // TODO: Avoid executing all handlers on each event because it's a lot of
   // indirections.
+  // This list is static, there should not be any need for runtime polymorphism.
   auto event_handlers = [&] {
     vector<unique_ptr<Event_handler>> vec;
     vec.reserve(2);
     vec.emplace_back(make_unique<Close_window>(window));
     vec.emplace_back(make_unique<Zoom_target_view_on_wheel_scroll>(window));
+    vec.emplace_back(make_unique<Click_on_circle>(window, circle));
+    vec.emplace_back(make_unique<Resize_view>(window));
     return vec;
   }();
 
@@ -115,29 +166,6 @@ void start() {
     while (window.pollEvent(event)) {
       for (const auto& handler : event_handlers)
         (*handler)(event);
-
-      // case Event::MouseButtonPressed: {
-      //   if (event.mouseButton.button == Mouse::Left) {
-      //     const auto local_mouse_pos =
-      //         Vector2i(event.mouseButton.x, event.mouseButton.y);
-      //     const auto world_coords = window.mapPixelToCoords(local_mouse_pos);
-      //     const auto circle_bounds = circle.getGlobalBounds();
-      //     if (circle_bounds.contains(world_coords.x, world_coords.y)) {
-      //       circle.setOutlineColor(Color::Red);
-      //     } else {
-      //       circle.setOutlineColor(Color::Blue);
-      //     }
-      //   }
-      //   break;
-      // }
-      // case Event::Resized: {
-      //   auto visible_area =
-      //       FloatRect(0.f, 0.f, static_cast<float>(event.size.width),
-      //                 static_cast<float>(event.size.height));
-      //   view.setSize(visible_area.width, visible_area.height);
-      //   window.setView(view);
-      //   break;
-      // }
     }
 
     window.clear();
