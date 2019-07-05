@@ -1,6 +1,7 @@
 set(
   astral_tookit_SOURCES
   expected.hpp
+  non_copyable.hpp
 )
 
 add_library(

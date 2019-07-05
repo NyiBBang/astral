@@ -15,12 +15,12 @@
 // You should have received a copy of the GNU General Public License
 // along with Astral.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "common_main.hpp"
-#include <windows.h>
+#pragma once
 
+#ifndef ASTRAL_NON_COPYABLE
 
-int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance,
-                     _In_ LPSTR lpCmdLine, _In_ int nCmdShow) {
-  astral::gui::start();
-  return EXIT_SUCCESS;
-}
+# define ASTRAL_NON_COPYABLE(T) \
+  T(const T&) = delete; \
+  T& operator=(const T&) = delete;
+
+#endif

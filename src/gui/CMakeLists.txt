@@ -1,5 +1,7 @@
 set(gui_SOURCES
-  common_main.hpp common_main.cpp
+  event_handler.hpp
+  common_main.hpp
+  common_main.cpp
 )
 if (WIN32)
   list(APPEND gui_SOURCES main_win32.cpp)

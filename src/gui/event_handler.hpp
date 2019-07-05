@@ -15,12 +15,29 @@
 // You should have received a copy of the GNU General Public License
 // along with Astral.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "common_main.hpp"
-#include <windows.h>
+#pragma once
 
+#include <toolkit/non_copyable.hpp>
 
-int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE hPrevInstance,
-                     _In_ LPSTR lpCmdLine, _In_ int nCmdShow) {
-  astral::gui::start();
-  return EXIT_SUCCESS;
+namespace sf {
+class Event;
 }
+
+namespace astral::gui {
+
+class Event_handler {
+public:
+  Event_handler() = default;
+  virtual ~Event_handler() = default;
+
+  ASTRAL_NON_COPYABLE(Event_handler)
+
+  void operator()(const sf::Event& ev) noexcept {
+    return execute(ev);
+  }
+
+private:
+  virtual void execute(const sf::Event& ev) noexcept = 0;
+};
+
+} // namespace astral::gui

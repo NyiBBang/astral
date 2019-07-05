@@ -1,6 +1,26 @@
+// Copyright (C) 2019 Vincent PALANCHER (nyibbang)
+//
+// This file is part of Astral.
+//
+// Astral is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 2 of the License, or
+// (at your option) any later version.
+//
+// Astral is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Astral.  If not, see <http://www.gnu.org/licenses/>.
+
+#include "event_handler.hpp"
+
 #include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
+
 #include <cassert>
 
 namespace astral::gui {
@@ -12,25 +32,6 @@ constexpr auto frame_rate_limit = 60u;
 constexpr auto zoom_sensitivity = 0.1f;
 
 namespace {
-  
-#define NON_COPYABLE(T) \
-  T(const T&) = delete; \
-  T& operator=(const T&) = delete;
-
-class Event_handler {
-public:
-  Event_handler() = default;
-  virtual ~Event_handler() = default;
-  
-  NON_COPYABLE(Event_handler);
-
-  void operator()(const Event& ev) noexcept {
-    return execute(ev);
-  }
-
-private:
-  virtual void execute(const Event& ev) noexcept = 0;
-};
 
 /// @returns The zoom factor applied to the view.
 float zoom_target_view(RenderTarget& target, float delta) {
@@ -99,8 +100,9 @@ void start() {
   circle.setFillColor(Color::Green);
   circle.setPosition(10, 20);
 
-  // TODO: Avoid executing all handlers on each event because it's a lot of indirections.
-  auto event_handlers = [&]{
+  // TODO: Avoid executing all handlers on each event because it's a lot of
+  // indirections.
+  auto event_handlers = [&] {
     vector<unique_ptr<Event_handler>> vec;
     vec.reserve(2);
     vec.emplace_back(make_unique<Close_window>(window));

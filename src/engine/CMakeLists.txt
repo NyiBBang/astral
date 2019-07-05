@@ -5,6 +5,7 @@ set(
 
 add_library(
   astral_engine
+  STATIC
   ${astral_engine_SOURCES}
 )
 

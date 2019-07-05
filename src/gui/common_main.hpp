@@ -18,6 +18,6 @@
 #pragma once
 
 namespace astral::gui {
-void start();
 
+void start();
 }
