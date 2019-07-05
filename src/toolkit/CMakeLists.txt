@@ -20,3 +20,9 @@ target_include_directories(
     ${PROJECT_SOURCE_DIR}/src
     ${Boost_INCLUDE_DIR}
 )
+
+target_compile_features(
+  astral_toolkit
+  INTERFACE
+    cxx_std_17
+)

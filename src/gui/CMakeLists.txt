@@ -21,9 +21,15 @@ set_target_properties(
     DEBUG_POSTFIX _d
 )
 
+target_compile_features(
+  astral_gui
+  PRIVATE
+    cxx_std_17
+)
+
 target_link_libraries(
   astral_gui
-  PUBLIC
+  PRIVATE
     sfml-graphics
     sfml-window
 )

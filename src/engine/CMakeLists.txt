@@ -16,6 +16,12 @@ target_include_directories(
     ${Boost_INCLUDE_DIR}
 )
 
+target_compile_features(
+  astral_engine
+  PUBLIC
+    cxx_std_17
+)
+
 target_link_libraries(
   astral_engine
   PUBLIC
