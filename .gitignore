@@ -16,3 +16,16 @@ out
 .*.swp
 .vscode
 build*
+
+
+#Added by cargo
+#
+#already existing elements are commented out
+/target
+**/*.rs.bk
+
+# Backup files
+.DS_Store
+thumbs.db
+*~
+*.swp
