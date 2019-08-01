@@ -67,7 +67,7 @@ impl GraphCreator<DefaultBackend> for RenderingGraph {
         self.dirty
     }
 
-    fn builder(a
+    fn builder(
         &mut self,
         factory: &mut Factory<DefaultBackend>,
         res: &Resources,
